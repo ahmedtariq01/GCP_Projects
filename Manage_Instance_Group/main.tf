@@ -1,4 +1,4 @@
-
+# Creating an Instance Template
 resource "google_compute_instance_template" "instance_template_tf" {
   name           = var.instance-template-tf
   machine_type   = var.machine_type
@@ -31,6 +31,7 @@ resource "google_compute_instance_template" "instance_template_tf" {
   tags = ["http-server", "https-server"]
 }
 
+# Creating a firewall rule
 resource "google_compute_firewall" "allow_http" {
   project = var.project
   name    = "allow-http-rule"
@@ -44,6 +45,7 @@ resource "google_compute_firewall" "allow_http" {
   # priority      = 1000
 }
 
+# Creating autohealing health check for the instance group
 resource "google_compute_health_check" "autohealing" {
   name                = var.autohealing_health_check
   check_interval_sec  = 5
@@ -57,6 +59,7 @@ resource "google_compute_health_check" "autohealing" {
   }
 }
 
+# Creating an Instance Group Manager
 resource "google_compute_instance_group_manager" "instance_group_manager_tf" {
   name               = var.instance_group_manager
   zone               = var.zone
@@ -77,7 +80,7 @@ resource "google_compute_instance_group_manager" "instance_group_manager_tf" {
 
 }
 
-
+# Creating an Autoscaler for the instance group
 resource "google_compute_autoscaler" "default" {
   name   = var.autoscaler
   zone   = var.zone
