@@ -10,7 +10,7 @@ variable "zone" {
   default     = "us-central1-a"
 }
 
-variable ""instance-template-tf"" {
+variable "instance-template-tf" {
   description = "Name of Instance Template"
   type        = string
   default     = "test1"
@@ -39,4 +39,10 @@ variable "autoscaler" {
   description = "value of Autoscaler"
   type        = string
   default     = "autoscaler-test1"
+}
+
+variable "project" {
+  description = "value of project"
+  type        = string
+  default     = "project name"
 }
